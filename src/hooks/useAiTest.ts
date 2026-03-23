@@ -33,7 +33,11 @@ export function useAiTest() {
         throw new Error('error' in data ? data.error : 'Erreur lors de l’appel au service IA.');
       }
 
-      setAnswer(data.answer);
+      if ('answer' in data) {
+        setAnswer(data.answer);
+      } else {
+        throw new Error('Réponse IA invalide.');
+      }
     } catch (err: any) {
       setError(err?.message || 'Erreur lors de l’appel au service IA.');
     } finally {
@@ -50,4 +54,5 @@ export function useAiTest() {
     submitQuestion,
   };
 }
+
 
