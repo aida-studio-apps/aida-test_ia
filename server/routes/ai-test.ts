@@ -15,9 +15,12 @@ router.post('/', async (req, res) => {
     return res.status(200).json({ answer });
   } catch (error: any) {
     console.error('AI test route error:', error?.message || error);
-    return res.status(503).json({ error: 'Erreur lors de l’appel au service IA.' });
+    return res.status(503).json({
+      error: error?.message || 'Erreur lors de l’appel au service IA.',
+    });
   }
 });
 
 export default router;
+
 
